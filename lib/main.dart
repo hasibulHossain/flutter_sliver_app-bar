@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:stopwatch/sliver_example.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,51 +27,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  Duration duration = Duration();
-  Timer? timer;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    startTimer();
-  }
-
-  void startTimer() {
-    timer = Timer.periodic(Duration(seconds: 1), (_) => addTime());
-  }
-
-  void addTime() {
-    const addSeconds = 1;
-
-    setState(() {
-      final seconds = duration.inSeconds + addSeconds;
-      duration = Duration(seconds: seconds);
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text(
-          '${duration.inSeconds}',
-          style: Theme.of(context).textTheme.headline3,
-        ),
-      ),
+      home: SliverExample(),
     );
   }
 }
